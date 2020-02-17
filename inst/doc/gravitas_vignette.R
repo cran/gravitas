@@ -1,4 +1,4 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   echo = TRUE,
   collapse = TRUE,
@@ -14,30 +14,30 @@ library(ggplot2)
 library(tsibble)
 
 
-## ----data_look-----------------------------------------------------------
+## ----data_look----------------------------------------------------------------
 smart_meter10 %>% select(customer_id,
                          reading_datetime,
                          general_supply_kwh,
                          everything()
 )
 
-## ----search_gran---------------------------------------------------------
+## ----search_gran--------------------------------------------------------------
 library(tsibble)
 interval(smart_meter10)
 smart_meter10 %>% search_gran()
 
-## ----search_gran_limit---------------------------------------------------
+## ----search_gran_limit--------------------------------------------------------
 
 smart_meter10 %>% 
   search_gran(highest_unit = "month")
 
-## ----search_gran_limit2--------------------------------------------------
+## ----search_gran_limit2-------------------------------------------------------
 
 smart_meter10 %>% search_gran(highest_unit = "month",
                               filter_out = c("hhour", "fortnight")
 )
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 library(lvplot)
 library(ggplot2)
 library(dplyr)
@@ -59,7 +59,7 @@ smart_meter10 %>%
   scale_y_sqrt() 
 
 
-## ----is_harmony----------------------------------------------------------
+## ----is_harmony---------------------------------------------------------------
 smart_meter10 %>% 
   is_harmony(gran1 = "hour_day", 
              gran2 = "day_week")
@@ -73,25 +73,25 @@ smart_meter10 %>%
   is_harmony(gran1 = "day_month",
              gran2 = "week_month")
 
-## ----harmony, echo=TRUE--------------------------------------------------
+## ----harmony, echo=TRUE-------------------------------------------------------
 smart_meter10 %>% harmony(
   ugran = "month",
   filter_out = c("hhour", "fortnight")
 )
 
-## ----granadvice----------------------------------------------------------
+## ----granadvice---------------------------------------------------------------
 smart_meter10 %>% gran_advice(
   "week_month",
   "hour_day"
 )
 
-## ----granobs, echo=TRUE--------------------------------------------------
+## ----granobs, echo=TRUE-------------------------------------------------------
 smart_meter10 %>% gran_obs(
   "week_month",
   "wknd_wday"
 )
 
-## ----hd_dw, echo=TRUE----------------------------------------------------
+## ----hd_dw, echo=TRUE---------------------------------------------------------
 cust1 <- smart_meter10 %>% 
   filter(customer_id %in% c(10006704)) %>% 
   prob_plot("wknd_wday",
@@ -101,7 +101,7 @@ cust1 <- smart_meter10 %>%
   scale_y_sqrt() +
   ggtitle("Energy consumption distribution for customer id: 10006704")
 
-## ----hd_dw2, echo=TRUE---------------------------------------------------
+## ----hd_dw2, echo=TRUE--------------------------------------------------------
 cust2 <- smart_meter10 %>% 
   filter(customer_id %in% c(10017936))%>% 
   prob_plot("wknd_wday",
@@ -111,7 +111,7 @@ cust2 <- smart_meter10 %>%
   scale_y_sqrt() + 
   ggtitle("Energy consumption distribution for customer id: 10017936")
 
-## ----cust, echo=FALSE----------------------------------------------------
+## ----cust, echo=FALSE---------------------------------------------------------
 cust1
 cust2
 

@@ -1,4 +1,4 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   echo = TRUE,
   collapse = TRUE,
@@ -14,12 +14,12 @@ library(ggplot2)
 library(tsibble)
 library(lvplot)
 
-## ----readdata------------------------------------------------------------
+## ----readdata-----------------------------------------------------------------
 library(gravitas)
 library(tibble)
 glimpse(cricket)
 
-## ----hierarchy2----------------------------------------------------------
+## ----hierarchy2---------------------------------------------------------------
 
 hierarchy_model <- tibble::tibble(
   units = c("index", "over", "inning", "match"),
@@ -28,12 +28,13 @@ hierarchy_model <- tibble::tibble(
 knitr::kable(hierarchy_model, format = "markdown")
 
 
-## ----crickread-----------------------------------------------------------
+## ----crickread----------------------------------------------------------------
+library(tsibble)
 cricket_tsibble <- cricket %>%
   mutate(data_index = row_number()) %>%
   as_tsibble(index = data_index)
 
-## ----cricex--------------------------------------------------------------
+## ----cricex-------------------------------------------------------------------
 cricket_tsibble %>%
   filter(batting_team %in% c("Mumbai Indians",
                              "Chennai Super Kings"))%>%
@@ -42,19 +43,19 @@ cricket_tsibble %>%
   response = "runs_per_over",
   plot_type = "lv")
 
-## ----exwicket------------------------------------------------------------
+## ----exwicket-----------------------------------------------------------------
 cricket_tsibble %>%
   gran_advice("wicket",
             "over",
             hierarchy_model)
 
-## ----exdot---------------------------------------------------------------
+## ----exdot--------------------------------------------------------------------
 cricket_tsibble %>%
   gran_advice("dot_balls",
             "over",
             hierarchy_model)
 
-## ----exdotplot-----------------------------------------------------------
+## ----exdotplot----------------------------------------------------------------
 cricket_tsibble %>% 
   filter(dot_balls %in% c(0, 1, 2)) %>%
   prob_plot("dot_balls",
@@ -66,7 +67,7 @@ cricket_tsibble %>%
 
 
 
-## ----exwicketplot--------------------------------------------------------
+## ----exwicketplot-------------------------------------------------------------
 cricket_tsibble %>% 
   filter(wicket %in% c(0, 1)) %>%
   prob_plot("wicket",

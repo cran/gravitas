@@ -4,15 +4,22 @@
 \alias{search_gran}
 \title{Search for granularities}
 \usage{
-search_gran(.data, lowest_unit = NULL, highest_unit = NULL,
-  hierarchy_tbl = NULL, filter_in = NULL, filter_out = NULL, ...)
+search_gran(
+  .data,
+  lowest_unit = NULL,
+  highest_unit = NULL,
+  hierarchy_tbl = NULL,
+  filter_in = NULL,
+  filter_out = NULL,
+  ...
+)
 }
 \arguments{
 \item{.data}{A tsibble object.}
 
 \item{lowest_unit}{Typically set as the finest unit required for analysis. For "regular" tsibble, lgran is the interval of the tsibble. It needs to be specified for "irregular" time intervals.For non-temporal data, default is the first unit specified in the hierarchy table.}
 
-\item{highest_unit}{Typically set as the most coarse unit required for analysis.For temporal data, default is "year" and for non-temporal data, default is set as the last unit specified in the hierarchy table}
+\item{highest_unit}{Typically set as the most coarse unit required for analysis.For temporal data, default is "year" and for non-temporal data, default is set as the last unit specified in the hierarchy table.}
 
 \item{hierarchy_tbl}{A hierarchy table specifying the hierarchy of units and their relationships.}
 

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -382,11 +381,10 @@ https://github.com/njtierney/naniar/blob/master/vignettes/getting-started-w-nani
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">smart_meter10 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw">search_gran</span>(<span class="dt">highest_unit =</span> <span class="st">&quot;month&quot;</span>)</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;  [1] &quot;hhour_hour&quot;      &quot;hhour_day&quot;       &quot;hhour_week&quot;     </span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;  [4] &quot;hhour_fortnight&quot; &quot;hhour_month&quot;     &quot;hour_day&quot;       </span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;  [7] &quot;hour_week&quot;       &quot;hour_fortnight&quot;  &quot;hour_month&quot;     </span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; [10] &quot;day_week&quot;        &quot;day_fortnight&quot;   &quot;day_month&quot;      </span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; [13] &quot;week_fortnight&quot;  &quot;week_month&quot;      &quot;fortnight_month&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;  [1] &quot;hhour_hour&quot;      &quot;hhour_day&quot;       &quot;hhour_week&quot;      &quot;hhour_fortnight&quot;</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;  [5] &quot;hhour_month&quot;     &quot;hour_day&quot;        &quot;hour_week&quot;       &quot;hour_fortnight&quot; </span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt;  [9] &quot;hour_month&quot;      &quot;day_week&quot;        &quot;day_fortnight&quot;   &quot;day_month&quot;      </span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; [13] &quot;week_fortnight&quot;  &quot;week_month&quot;      &quot;fortnight_month&quot;</span></a></code></pre></div>
 <p>This looks better. However, some intermediate temporal units might not be pertinent to the analysis and we might want to remove them from the list of granularities that we want to examine using the argument <code>filter_out</code> in <code>search_gran</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">smart_meter10 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">search_gran</span>(<span class="dt">highest_unit =</span> <span class="st">&quot;month&quot;</span>,</a>

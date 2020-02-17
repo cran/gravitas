@@ -4,22 +4,27 @@
 \alias{validate_gran}
 \title{Validate created granularities with existing columns}
 \usage{
-validate_gran(.data, gran = NULL, hierarchy_tbl = NULL,
-  validate_col = NULL, ...)
+validate_gran(
+  .data,
+  gran = NULL,
+  hierarchy_tbl = NULL,
+  validate_col = NULL,
+  ...
+)
 }
 \arguments{
 \item{.data}{A tsibble object.}
 
 \item{gran}{the granularity to be created for validation.}
 
-\item{hierarchy_tbl}{A hierarchy table}
+\item{hierarchy_tbl}{A hierarchy table.}
 
-\item{validate_col}{A column in the data which acts as validator}
+\item{validate_col}{A column in the data which acts as validator.}
 
 \item{...}{Other arguments passed on to individual methods.}
 }
 \value{
-A tsibble with an additional column of granularity
+A tsibble with an additional column of granularity.
 }
 \description{
 Validate created granularities with existing columns
