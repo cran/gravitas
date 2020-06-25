@@ -15,15 +15,10 @@ library(tsibble)
 
 
 ## ----data_look----------------------------------------------------------------
-smart_meter10 %>% select(customer_id,
-                         reading_datetime,
-                         general_supply_kwh,
-                         everything()
-)
+smart_meter10
 
 ## ----search_gran--------------------------------------------------------------
-library(tsibble)
-interval(smart_meter10)
+tsibble::interval(smart_meter10)
 smart_meter10 %>% search_gran()
 
 ## ----search_gran_limit--------------------------------------------------------
@@ -43,7 +38,7 @@ library(ggplot2)
 library(dplyr)
 library(tibble)
 smart_meter10 %>%
-  filter(customer_id %in% c(10006704, 10017936)) %>% 
+  filter(customer_id %in% c("10006704", "10017936")) %>% 
   create_gran("day_fortnight") %>%
   ggplot2::ggplot(aes(
     x = as.factor(day_fortnight),
@@ -103,7 +98,7 @@ cust1 <- smart_meter10 %>%
 
 ## ----hd_dw2, echo=TRUE--------------------------------------------------------
 cust2 <- smart_meter10 %>% 
-  filter(customer_id %in% c(10017936))%>% 
+  filter(customer_id %in% c("10017936"))%>% 
   prob_plot("wknd_wday",
                             "hour_day",
                             response = "general_supply_kwh",

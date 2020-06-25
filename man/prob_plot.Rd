@@ -15,6 +15,7 @@ prob_plot(
   facet_h = NULL,
   symmetric = TRUE,
   alpha = 0.8,
+  threshold_nobs = NULL,
   ...
 )
 }
@@ -35,9 +36,11 @@ prob_plot(
 
 \item{facet_h}{levels of facet variable for which facetting is allowed while plotting bivariate temporal granularities.}
 
-\item{symmetric}{If TRUE, symmetic quantile area plot is drawn. If FALSE, only quantile lines are drawn instead of area. If TRUE, length of quantile_prob should be odd and ideally the quantile_prob should be a symmetric vector with median at the middle position.}
+\item{symmetric}{If TRUE, symmetic quantile area <- is drawn. If FALSE, only quantile lines are drawn instead of area. If TRUE, length of quantile_prob should be odd and ideally the quantile_prob should be a symmetric vector with median at the middle position.}
 
 \item{alpha}{level of transperancy for the quantile area}
+
+\item{threshold_nobs}{the minimum number of observations below which only points would be plotted}
 
 \item{...}{other arguments to be passed for customising the obtained ggplot object.}
 }
@@ -54,11 +57,14 @@ library(tsibble)
 library(lvplot)
 library(dplyr)
 
-vic_elec \%>\% prob_plot(
-  gran1 = "hour_day", gran2 = "day_week",
-  response = "Demand", plot_type = "quantile",
+smart_meter10 \%>\%
+filter(customer_id \%in\% c("10017936")) \%>\%
+prob_plot(
+  gran1 = "day_week", gran2 = "hour_day",
+  response = "general_supply_kwh", plot_type = "quantile",
   quantile_prob = c(0.1, 0.25, 0.5, 0.75, 0.9),
-  symmetric = TRUE, outlier.colour = "red",
+  symmetric = TRUE,
+   outlier.colour = "red",
   outlier.shape = 2, palette = "Dark2"
 )
 
